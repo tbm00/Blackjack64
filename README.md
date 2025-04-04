@@ -31,7 +31,7 @@ Created by tbm00 for play.mc64.wtf.
 
 ## Config
 ```
-# Blackjack64 v2.0.0-beta by @tbm00
+# Blackjack64 v2.0.1-beta by @tbm00
 # https://github.com/tbm00/Blackjack64
 
 enabled: true
@@ -48,6 +48,7 @@ blackjack-multiplier: 1.5
 # Set to true if you wish start a new session for each /blackjack command
 enable-secondary-bet-override: false
 
+# Set to 0 to disable
 bet-modifiers:
    increaseValue1: 10.0
    increaseValue2: 100.0

@@ -200,6 +200,7 @@ public class BlackjackSessionGui {
 
     private void addModifier(String type, int index, int slot) {
         double betDiff = Blackjack64.getInstance().getConfig().getInt("bet-modifiers." + type + "Value" + index);
+        if (betDiff==0) return;
 
         ItemStack item = new ItemStack(Material.STONE_BUTTON);
         ItemMeta meta = item.getItemMeta();
