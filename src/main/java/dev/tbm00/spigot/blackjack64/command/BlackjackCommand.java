@@ -64,7 +64,7 @@ public class BlackjackCommand implements CommandExecutor {
                                 
                                 if (bjp.getWinnings()>0)
                                     player.sendMessage(StaticUtils.translate(StaticUtils.getString("winnings-stat").replace("$amount$", "+$"+StaticUtils.formatInt(bjp.getWinnings()))));
-                                if (bjp.getWinnings()<0)
+                                else if (bjp.getWinnings()<0)
                                     player.sendMessage(StaticUtils.translate(StaticUtils.getString("winnings-stat").replace("$amount$", "-$"+StaticUtils.formatInt(-1*bjp.getWinnings()))));
                                 else player.sendMessage(StaticUtils.translate(StaticUtils.getString("winnings-stat").replace("$amount$", "$0")));
 

@@ -82,17 +82,13 @@ public class JSONHandler {
 
     // save stats to JSON
     public static void saveStats(Set<BlackjackPlayer> blackjackPlayers) {
-        Map<UUID, PlayerStats> newStatsMap = new HashMap<>();
         for (BlackjackPlayer player : blackjackPlayers) {
-            newStatsMap.put(player.getUuid(), player.getStats());
+            statsMap.put(player.getUuid(), player.getStats());
         }
-
-        // Update our local map
-        statsMap = newStatsMap;
 
         CompletableFuture.runAsync(() -> {
             try (Writer writer = new FileWriter(jsonFile)) {
-                gson.toJson(newStatsMap, writer);
+                gson.toJson(statsMap, writer);
             } catch (IOException e) {
                 javaPlugin.getLogger().severe("Could not write to player_stats.json: " + e.getMessage());
             }
