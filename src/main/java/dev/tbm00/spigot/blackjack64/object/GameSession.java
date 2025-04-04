@@ -25,8 +25,6 @@ public class GameSession {
         this.betAmount = game.getBetAmount();
     }
 
-
-
     public double getBetAmount() {
         return betAmount;
     }
@@ -41,7 +39,6 @@ public class GameSession {
             earnings += game.getResult();
         }
         return earnings;
-        
     }
 
     public BlackjackGame hasOngoingGame(){
@@ -55,7 +52,6 @@ public class GameSession {
         if (game == null) return -1;
         return game.getBetAmount();
     }
-
 
     public UUID getUuid() {
         return uuid;
@@ -88,7 +84,7 @@ public class GameSession {
                    .replace("$amount$", games.size() + "").replace("$outcome$", "&c-$"+StaticUtils.formatInt(-1*getTotalEarnings()))));
         } else {
            getPlayer().sendMessage(StaticUtils.translate(StaticUtils.getString("session-ending")
-                   .replace("$amount$", games.size() + "").replace("$outcome$", "&e0" )));
+                   .replace("$amount$", games.size() + "").replace("$outcome$", "&e$0" )));
         }
 
         Blackjack64.getInstance().getSessions().remove(this);
