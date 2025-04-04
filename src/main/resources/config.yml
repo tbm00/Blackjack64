@@ -1,60 +1,20 @@
-# BLACKJACK, v1.8.0, by Perotin & tbm00
+# Blackjack64 v2.0.0-beta by @tbm00
+# https://github.com/tbm00/Blackjack64
 
+enabled: true
 
-# Set to true if you want this plugin to use vault eco, false if you want it to use exp (not recommended, may be buggy)
-cash-or-xp: true
-
-# This is a toggle of whether or not players should be allowed to bet more money than they currently have
-bet-overflow: false
-# If the above is set to true, this is the max amount they can bet of money they don't have
-bet-overflow-max: 1000
-
-# The percentage that should be taxed / deducted from winnings. Set to 0.0 for no taxes. Range is 0.0 to 100.0 .
-tax-percent: 0.0
-
-# Minimum amount able to bet and the maximum amount to bet! Setting either to zero will negate it completely.
 bet-min: 0.0
 bet-max: 0.0
 
-# Override secondary /bet commands?
-# E.g. Some people have told me they have multiple NPC's with different bet amounts.
-# This poses a problem due to the session system where running /bet 100 and then /bet 200 will pull up the first
-# bet. Set the below to true if you wish for different bet amounts to trigger a new blackjack round.
+enable-double-down: true
+enable-surrender: true
+surrender-percentage-to-take: 50.0
+enable-blackjack-multiplier: true
+blackjack-multiplier: 1.5
+
+# Set to true if you wish start a new session for each /blackjack command
 enable-secondary-bet-override: false
 
-
-# The following options relate to the move to surrender
-
-# Should surrendering (forfeit the game and keep a % of your bet)
-enable-surrender: true
-
-# What percentage of the bet should the server take? (1-99)
-surrender-percentage-to-take: 50.0
-
-# Should doubling down be enabled (double your bet amount but forced to stand after drawing 1 more card)
-enable-double-down: true
-
-# If double down is enabled, and a person doubles down without enough funds to cover the cost of a loss,
-# should they still be rewarded the 2x multiplier?
-# E.g. player A bets all $100 they own, they then double down making the bet $200, they then lose and hence lose
-# $200. However, a lot of economies do not use negative balances so they would really only lose $100.
-# I'd recommend keeping this false unless your economy allows for players to have negative balances
-double-down-overflow: false
-
-# Disable the change bet buttons? (Players cannot change their amount in the bet)
-enable-change-bet: true
-
-# One user requested this, basically, it'll run the specified command below when each round of blackjack starts. If you want
-# to use this, then set the below to 'true' and specify your command.
-custom-command: false
-command: "/Example $amount$"
-
-# Should there be a multiplier for Blackjack (score of 21)?
-enable-multiplier: true
-# What should the bet amount be multiplied to for blackjacks?
-multiplier: 1.5
-
-# Stone buttons that are used to increase/decrease the bet value in menu
 bet-modifiers:
    increaseValue1: 10.0
    increaseValue2: 100.0
@@ -67,40 +27,45 @@ bet-modifiers:
    decreaseValue4: 10000.0
    decreaseValue5: 100000.0
 
-# Messages used in plugin
-number-or-player: "&eStart a blackjack session with &f/blackjack <bet amount>"
-no-permission: "&cYou do not have permissions to do this!"
-menu-title: "&lBlackjack: &r&8$$number$ Bet"
-unknown-card: "&e???"
-incorrect-args: "&eStart a blackjack session with &f/blackjack <bet amount>"
+# Gui Labels
+hand-menu-title: "&lBlackjack: &r&8$$bet$ Bet"
 hit-item: "&eHit"
 stand-item: "&eStand"
 surrender-item: "&eSurrender"
 double-down-item: "&eDouble Down"
-earnings: "&eYou $result$ $number$ coins!"
-taxxed: "&c-$amount$ taxed."
-won: "won"
-lost: "lost"
-tied: "&eYou tied so you get your coins back."
+dealers-hand-game-item: "&eDealer's Hand"
+your-hand-game-item: "&eYour Hand"
+prefix-card-item: "&e"
+hidden-card-item: "???"
+session-menu-title: "&lBlackjack: $hand$ &8Hand"
+summary-item: "&eSession Summary"
+keep-playing-item: "&aNext Hand"
+stop-playing-item: "&cEnd Session"
+enter-bet-item: "&eBetting &f$$number$"
+dealers-hand-session-item: "&eDealer's Prior Hand"
+your-hand-session-item: "&eYour Prior Hand"
+prefix-increase-bet-item: "&a+ $"
+prefix-decrease-bet-item: "&c- $"
+
+# Messages
+no-permission: "&cYou do not have permissions to do this!"
+number-or-player: "&eStart a blackjack session with &f/blackjack <bet amount>"
+previous-game: "&7Opening previous blackjack session..."
+quitter-mid-game: "&eYou left in the middle of a blackjack hand so you forfeitted &c$$amount$&e!"
+session-ending: "&eAfter $amount$ hands, you resulted in $outcome$&e!"
+blackjack-reward: "&aYou won &2$$amount$ &afrom that blackjack!"
 cannot-bet-that-much: "&cYou cannot bet more money than you have!"
 can-only-bet: "&cYou can only bet $amount$ over your total balance!"
 bet-max-message: "&cThe maximum you can bet is $amount$!"
 bet-min-message: "&cThe minimum you can bet is $amount$!"
-surrender-message: "&eYou surrendered, keeping $amount$ of your original $bet$ bet!"
-quitter-mid-game: "&eYou left in the middle of a blackjack hand so you forfeitted &c-$$amount$!"
+name-stat: "&cName: &7$name$"
+wins-stat: "&cWins: &7$amount$"
+losses-stat: "&cLosses: &7$amount$"
+ratio-stat: "&cW/L Ratio: &7$amount$"
+ties-stat: "&cTies: &7$amount$"
+winnings-stat: "&cWinnings: &7$amount$"
 
-# Session Messages
-keep-playing: "&aNext Hand"
-stop-playing: "&cEnd Session"
-session-ending: "&eAfter $amount$ games, you resulted in $$outcome$!"
-
-# New messages
-previous-game: "&7Opening previous blackjack session..."
-wins-stat: "&cWins: &f$amount$"
-loss-stat: "&cLosses: &f$amount$"
-ratio-stat: "&cW/L Ratio: &f$amount$"
-
-# Names of cards
+# Names of Cards
 spades: "Spades"
 hearts: "Hearts"
 clubs: "Clubs"

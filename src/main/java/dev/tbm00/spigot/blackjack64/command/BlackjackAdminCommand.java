@@ -1,4 +1,4 @@
-package me.perotin.blackjack.commands;
+package dev.tbm00.spigot.blackjack64.command;
 
 import java.text.DecimalFormat;
 import java.util.stream.IntStream;
@@ -8,19 +8,20 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import me.perotin.blackjack.Blackjack;
+import dev.tbm00.spigot.blackjack64.Blackjack64;
+import dev.tbm00.spigot.blackjack64.util.StaticUtils;
 
 public class BlackjackAdminCommand implements CommandExecutor {
 
-    private Blackjack plugin;
+    private Blackjack64 plugin;
 
-    public BlackjackAdminCommand(Blackjack blackjack) {
+    public BlackjackAdminCommand(Blackjack64 blackjack) {
         this.plugin = blackjack;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        if(sender.hasPermission("blackjack.admin")){
+        if(sender.hasPermission("blackjack64.admin")){
             if(args.length == 0){
                 // default
                 IntStream.range(0, 3).forEach(x -> sender.sendMessage(" "));
@@ -58,12 +59,12 @@ public class BlackjackAdminCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&',  "&7&oOn average, the server should win 52% of games."));
                 sender.sendMessage(" ");
 
-                sender.sendMessage(ChatColor.RED + "You are running version " + plugin.getDescription().getVersion() + " made by Perotin & tbm00");
+                sender.sendMessage(ChatColor.RED + "You are running version " + plugin.getDescription().getVersion() + " made by tbm00");
             }
 
         } else {
-             sender.sendMessage(plugin.getString("no-permission"));
-             return true;
+            sender.sendMessage(StaticUtils.getString("no-permission"));
+            return true;
         }
         return true;
     }

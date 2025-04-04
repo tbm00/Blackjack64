@@ -1,4 +1,4 @@
-package me.perotin.blackjack.objects;
+package dev.tbm00.spigot.blackjack64.object;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import me.perotin.blackjack.Blackjack;
+import dev.tbm00.spigot.blackjack64.Blackjack64;
 
 public class BlackFile {
 
@@ -19,11 +19,15 @@ public class BlackFile {
     private final FileConfiguration configuration;
     private final BlackFilesType type;
 
+    public enum BlackFilesType {
+        STATS
+    }
+
     public BlackFile(BlackFilesType type) {
         this.type = type;
         switch (type) {
             case STATS:
-                file = new File(Blackjack.getInstance().getDataFolder(), "stats.yml");
+                file = new File(Blackjack64.getInstance().getDataFolder(), "stats.yml");
                 configuration = YamlConfiguration.loadConfiguration(file);
                 break;
             default:
@@ -62,8 +66,8 @@ public class BlackFile {
         InputStream defaultStream;
         switch (type) {
             case STATS:
-                dataFile = new File(Blackjack.getInstance().getDataFolder(), "stats.yml");
-                defaultStream = Blackjack.getInstance().getResource("stats.yml");
+                dataFile = new File(Blackjack64.getInstance().getDataFolder(), "stats.yml");
+                defaultStream = Blackjack64.getInstance().getResource("stats.yml");
                 break;
             default:
                 throw new IllegalArgumentException("Unsupported file type: " + type);
@@ -71,7 +75,7 @@ public class BlackFile {
 
         if (!dataFile.exists()) {
             try {
-                File dataFolder = Blackjack.getInstance().getDataFolder();
+                File dataFolder = Blackjack64.getInstance().getDataFolder();
                 if (!dataFolder.exists()) {
                     dataFolder.mkdirs();
                 }
@@ -89,7 +93,7 @@ public class BlackFile {
                 Bukkit.getLogger().severe("[Blackjack] Couldn't create " + type.toString().toLowerCase() + " file.");
                 Bukkit.getLogger().severe("[Blackjack] This is a fatal error. Now disabling plugin.");
                 e.printStackTrace();
-                Bukkit.getPluginManager().disablePlugin(Blackjack.getInstance());
+                Bukkit.getPluginManager().disablePlugin(Blackjack64.getInstance());
             } finally {
                 if (defaultStream != null) {
                     try {
@@ -110,9 +114,5 @@ public class BlackFile {
         for (BlackFilesType type : BlackFilesType.values()) {
             new BlackFile(type).load();
         }
-    }
-
-    public enum BlackFilesType {
-        STATS
     }
 }

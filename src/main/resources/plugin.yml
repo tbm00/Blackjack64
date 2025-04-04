@@ -1,15 +1,19 @@
-name: Blackjack
-main: me.perotin.blackjack.Blackjack
-version: 1.8.0
-authors: [Perotin, tbm00]
-depends: [Vault]
-api-version: 1.13
+name: Blackjack64
+version: ${project.version}
+description: ${project.description}
+author: tbm00
+main: dev.tbm00.spigot.blackjack64.Blackjack64
+api-version: 1.17
+depend: [Vault]
 commands:
+   z64blackjack:
+      usage: /z64blackjack
+      permission: blackjack64.play
    blackjack:
       usage: /blackjack <amount>
-      permission: blackjack.play
+      permission: blackjack64.play
       aliases: [bj]
    blackjackadmin:
       usage: /blackjackadmin
-      permission: blackjack.admin
+      permission: blackjack64.admin
       aliases: [bja]
