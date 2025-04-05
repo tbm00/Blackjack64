@@ -84,11 +84,11 @@ public class BlackjackCommand implements CommandExecutor {
                         betAmount = 0.0;
                     } else if (betMax > 0 && betAmount > betMax){
                         player.sendMessage(StaticUtils.getString("bet-max-message")
-                                .replace("$amount$", betMax+""));
+                                .replace("$amount$", StaticUtils.formatInt(betMax)));
                         return true;
                     } else if (betMin > 0 && betAmount < betMin){
                         player.sendMessage(StaticUtils.getString("bet-min-message")
-                                .replace("$amount$", betMin+""));
+                                .replace("$amount$", StaticUtils.formatInt(betMin)));
                         return true;
                     }
 

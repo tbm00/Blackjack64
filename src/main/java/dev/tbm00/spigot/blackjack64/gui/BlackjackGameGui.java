@@ -36,7 +36,7 @@ public class BlackjackGameGui {
         this.isHidden = isHidden;
         this.isDoubleDown = isDoubleDown;
 
-        gui = new Gui(6, StaticUtils.translate(StaticUtils.getString("hand-menu-title").replace("$bet$", "" + StaticUtils.formatInt(game.getBetAmount()))));
+        gui = new Gui(6, StaticUtils.translate(StaticUtils.getString("hand-menu-title").replace("$bet$", StaticUtils.formatInt(game.getBetAmount()))));
         
         fillGui();
         

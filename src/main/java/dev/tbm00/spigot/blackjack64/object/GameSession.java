@@ -108,7 +108,7 @@ public class GameSession {
             } else StaticUtils.deposit( betAmount + betAmount, player);
 
             if(blackJack) {
-                player.sendMessage(StaticUtils.translate(StaticUtils.getString("blackjack-reward").replace("$amount$", ""+(plugin.getBlackJackMultiplier() * betAmount)).replace("$multiplier$", ""+plugin.getConfig().getDouble("blackjack-multiplier"))));
+                player.sendMessage(StaticUtils.translate(StaticUtils.getString("blackjack-reward").replace("$amount$", StaticUtils.formatInt((plugin.getBlackJackMultiplier() * betAmount))).replace("$multiplier$", ""+plugin.getConfig().getDouble("blackjack-multiplier"))));
                 plugin.setServerImpact(plugin.getServerImpact() - (plugin.getBlackJackMultiplier()* betAmount));
             } else plugin.setServerImpact(plugin.getServerImpact() - betAmount);
             plugin.increaseGamesPlayed();
