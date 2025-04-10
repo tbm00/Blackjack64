@@ -1,7 +1,9 @@
 package dev.tbm00.spigot.blackjack64.gui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -27,10 +29,21 @@ public class AnvilGui {
         rightMeta.setItemName("enter bet amount ($)");
         rightItem.setItemMeta(rightMeta);
 
-        ItemStack outputItem = new ItemStack(Material.STONE_BUTTON);
+        ItemStack outputItem = new ItemStack(Material.TOTEM_OF_UNDYING);
         ItemMeta outputMeta = outputItem.getItemMeta();
-        outputMeta.setDisplayName("enter bet then click to start hand");
-        outputMeta.setItemName("enter bet then click to start hand");
+        List<String> lore = new ArrayList<>();
+        outputMeta.setDisplayName("$$$");
+        outputMeta.setItemName("$$$");
+
+        if (type.equals("change")) {
+            lore.add(StaticUtils.translate("&7Click to confirm bet amount"));
+        }
+        if (type.equals("new")) {
+            lore.add(StaticUtils.translate("&8-----------------------"));
+            lore.add(StaticUtils.translate("&6Click to start blackjack hand"));
+        }
+
+        outputMeta.setLore(lore.stream().map(l -> StaticUtils.translate(l)).toList());
         outputItem.setItemMeta(outputMeta);
 
         new AnvilGUI.Builder()
