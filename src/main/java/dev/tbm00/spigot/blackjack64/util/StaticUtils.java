@@ -55,12 +55,12 @@ public class StaticUtils {
             Bukkit.getLogger().info("[Blackjack] Could not find config path!: " + path);
             return "";
         }
-        return ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(path));
+        return translate(plugin.getConfig().getString(path));
     }
 
     public static String getString(String path, String alternative){
         return plugin.getConfig().getString(path) != null ? 
-            ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString(path)) : alternative;
+            translate(plugin.getConfig().getString(path)) : alternative;
     }
 
     /**

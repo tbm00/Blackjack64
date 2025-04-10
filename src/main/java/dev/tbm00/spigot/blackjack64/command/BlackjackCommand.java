@@ -23,11 +23,11 @@ public class BlackjackCommand implements CommandExecutor {
 
     private Blackjack64 plugin;
 
-    private boolean secondaryBetOverride = false;
+    private boolean newGameOverride = false;
 
     public BlackjackCommand(Blackjack64 plugin){
         this.plugin = plugin;
-        this.secondaryBetOverride = plugin.isSecondaryBetOverride();
+        this.newGameOverride = plugin.isnewGameOverride();
     }
 
     @Override
@@ -93,13 +93,13 @@ public class BlackjackCommand implements CommandExecutor {
                     }
 
                     // search up if they already have an on-going game
-                    // However, create a new one if secondary enable override is true
+                    // However, create a new one if newGameOverride is true
                     GameSession blackjackSession = plugin.getSessionFor(player.getUniqueId());
-                    boolean secondaryOverrideCheckCurrentGame = blackjackSession != null && secondaryBetOverride &&
+                    boolean newGameOverrideCheck = blackjackSession != null && newGameOverride &&
                             blackjackSession.hasOngoingGame() != null && betAmount != blackjackSession.getBetOfOngoingGame();
 
                     boolean noOtherGames = true;
-                    if(blackjackSession != null && !secondaryOverrideCheckCurrentGame) {
+                    if(blackjackSession != null && !newGameOverrideCheck) {
                         for (BlackjackGame game : plugin.getSessionFor(player.getUniqueId()).getGames()) {
                             if (game.getPlayer().getUniqueId().equals(player.getUniqueId()) && game.getResult() == Double.MAX_VALUE) {
                                 // they have an ongoing game
@@ -120,7 +120,7 @@ public class BlackjackCommand implements CommandExecutor {
                     }
                     
                     if(noOtherGames) {
-                        if(blackjackSession != null && !secondaryOverrideCheckCurrentGame){
+                        if(blackjackSession != null && !newGameOverrideCheck){
                             // they have a session already
                             player.sendMessage(StaticUtils.getString("previous-game", ChatColor.GRAY + "Opening previous blackjack session..."));
                             new BukkitRunnable() {
@@ -134,7 +134,7 @@ public class BlackjackCommand implements CommandExecutor {
                             return true;
                         }
 
-                        if (blackjackSession != null && secondaryOverrideCheckCurrentGame) {
+                        if (blackjackSession != null && newGameOverrideCheck) {
                             // cancel the old game
                             bjp.adjustWinnings(-1*blackjackSession.getBetOfOngoingGame());
                             blackjackSession.hasOngoingGame().setEnd(BlackjackGame.Ending.LOSE);

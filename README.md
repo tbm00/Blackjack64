@@ -39,14 +39,14 @@ enabled: true
 bet-min: 0.0
 bet-max: 0.0
 
-enable-double-down: true
-enable-surrender: true
+double-down-enabled: true
+surrender-enabled: true
 surrender-percentage-to-take: 50.0
-enable-blackjack-multiplier: true
+blackjack-multiplier-enabled: true
 blackjack-multiplier: 1.5
 
 # Set to true if you wish start a new session for each /blackjack command
-enable-secondary-bet-override: false
+new-game-override-enabled: false
 
 # Set to 0 to disable
 bet-modifiers:

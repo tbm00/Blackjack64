@@ -39,7 +39,7 @@ public class Blackjack64 extends JavaPlugin {
         "Ah",  "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "Kh",
         "Ad",  "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd"};
     private double serverImpact, serverWins, games, serverLosses;
-    private boolean surrender, doubleDown, secondaryBetOverride;
+    private boolean surrender, doubleDown, newGameOverride;
     private double surrenderPercentage, blackJackMultiplier;
 
     @Override
@@ -68,13 +68,13 @@ public class Blackjack64 extends JavaPlugin {
         this.sessions = new HashSet<>();
         this.games = 0;
         this.serverLosses = 0;
-        this.surrender = getConfig().getBoolean("enable-surrender");
-        this.doubleDown = getConfig().getBoolean("enable-double-down");
-        this.secondaryBetOverride = getConfig().getBoolean("enable-secondary-bet-override", false);
+        this.surrender = getConfig().getBoolean("surrender-enabled");
+        this.doubleDown = getConfig().getBoolean("double-down-enabled");
+        this.newGameOverride = getConfig().getBoolean("new-game-override-enabled", false);
         this.surrenderPercentage = getConfig().getDouble("surrender-percentage-to-take");
         this.betMax = getConfig().getDouble("bet-max");
         this.betMin = getConfig().getDouble("bet-min");
-        if (getConfig().getBoolean("enable-blackjack-multiplier"))
+        if (getConfig().getBoolean("blackjack-multiplier-enabled"))
             this.blackJackMultiplier = getConfig().getDouble("blackjack-multiplier");
         else this.blackJackMultiplier = 0;
 
@@ -127,8 +127,8 @@ public class Blackjack64 extends JavaPlugin {
         return new BlackFile(STATS).getConfiguration().getInt("server-losses") + getServerLosses();
     }
 
-    public boolean isSecondaryBetOverride() {
-        return secondaryBetOverride;
+    public boolean isnewGameOverride() {
+        return newGameOverride;
     }
 
     public void increaseServerLosses() {
